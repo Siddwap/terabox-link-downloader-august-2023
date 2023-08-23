@@ -270,6 +270,20 @@ export default function Home() {
               Download
             </Button>
           </Link>
+          <Link
+            href={`https://sdplayer.onrender.com/${encodeURIComponent(data?.dlink)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-0 text-xl font-bold text-white self-center"
+          >
+            <Button
+              variant="default"
+              className="py-0 bg-blue-700 mt-3 text-xl font-bold"
+            >
+              {" "}
+              Play
+            </Button>
+          </Link>
         </main>
       )}
     </div>
