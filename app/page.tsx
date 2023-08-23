@@ -153,8 +153,7 @@ export default function Home() {
     setToken(encryptedData);
   }
 
-   useEffect(() => {
-     async function getDlLink(){
+  async function getDlLink(){
         axios.head(data?.dlink)
   .then(response => {
     const downloadLink = response.request.res.responseUrl;
@@ -163,13 +162,7 @@ export default function Home() {
   .catch(error => {
     console.error('Error:', error);
   });
-  }
-
-     if(data){
-        getDlLink()
-     }
-   
-  }, [data]);
+   getDlLink()
 
   return (
     <div className="pt-6 mx-12">
