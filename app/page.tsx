@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import CryptoJS from "crypto-js";
 import Image from "next/image";
-import axios from "axios"
 
 const fetchWithToken = async (url: URL | RequestInfo) => {
   const res = await fetch(url);
@@ -152,12 +151,6 @@ export default function Home() {
     setToken(encryptedData);
   }
 
-  async function playerHandler(){
-    const response = await axios.post(("https://orange-farmer-rqnyh.pwskills.app:4000/"),{data.link})
-    const lk = response.data.downloadLink;
-    setDlLink(lk)
-  }
-
   return (
     <div className="pt-6 mx-12">
       <nav className="flex justify-between ">
@@ -277,22 +270,6 @@ export default function Home() {
               Download
             </Button>
           </Link>
-          <Link
-            href={dlLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="py-0 text-xl font-bold text-white self-center"
-          >
-            Click to download
-          </Link>
-          <Button
-            onClick={playerHandler}
-              variant="default"
-              className="py-0 bg-blue-700 mt-3 text-xl font-bold"
-            >
-              {" "}
-              Download
-            </Button>
         </main>
       )}
     </div>
