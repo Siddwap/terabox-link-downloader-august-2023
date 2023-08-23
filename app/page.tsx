@@ -121,16 +121,6 @@ export default function Home() {
     if (data || error) {
       setdisableInput(false);
       setLink("");
-      async function getDlLink(){
-        axios.head(data?.dlink)
-  .then(response => {
-    const downloadLink = response.request.res.responseUrl;
-    setDlLink(downloadLink)
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-   getDlLink()
     }
     if (err || error) {
       setTimeout(() => {
@@ -162,6 +152,17 @@ export default function Home() {
     ).toString();
     setToken(encryptedData);
   }
+
+  async function getDlLink(){
+        axios.head(data?.dlink)
+  .then(response => {
+    const downloadLink = response.request.res.responseUrl;
+    setDlLink(downloadLink)
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+   getDlLink()
 
   return (
     <div className="pt-6 mx-12">
