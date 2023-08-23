@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import CryptoJS from "crypto-js";
 import Image from "next/image";
+import axios from "axios"
 
 const fetchWithToken = async (url: URL | RequestInfo) => {
   const res = await fetch(url);
@@ -101,6 +102,7 @@ function checkUrlPatterns(url: string) {
 
 export default function Home() {
   const [link, setLink] = useState("");
+  const [dlLink, setDlLink] = useState("");
   const [err, setError] = useState("");
   const [token, setToken] = useState("");
   const [disableInput, setdisableInput] = useState(false);
@@ -119,6 +121,16 @@ export default function Home() {
     if (data || error) {
       setdisableInput(false);
       setLink("");
+      async function getDlLink(){
+        axios.head(data?.dlink)
+  .then(response => {
+    const downloadLink = response.request.res.responseUrl;
+    setDlLink(downloadLink)
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+   getDlLink()
     }
     if (err || error) {
       setTimeout(() => {
@@ -258,6 +270,20 @@ export default function Home() {
           </div>
           <Link
             href={data?.dlink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-0 text-xl font-bold text-white self-center"
+          >
+            <Button
+              variant="default"
+              className="py-0 bg-blue-700 mt-3 text-xl font-bold"
+            >
+              {" "}
+              Download
+            </Button>
+          </Link>
+          <Link
+            href={dlLink}
             target="_blank"
             rel="noopener noreferrer"
             className="py-0 text-xl font-bold text-white self-center"
