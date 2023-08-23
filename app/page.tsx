@@ -283,14 +283,16 @@ export default function Home() {
             rel="noopener noreferrer"
             className="py-0 text-xl font-bold text-white self-center"
           >
-            <Button
+            Click to download
+          </Link>
+          <Button
+            onClick={playerHandler}
               variant="default"
               className="py-0 bg-blue-700 mt-3 text-xl font-bold"
             >
               {" "}
               Download
             </Button>
-          </Link>
         </main>
       )}
     </div>
