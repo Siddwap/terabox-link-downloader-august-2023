@@ -102,7 +102,6 @@ function checkUrlPatterns(url: string) {
 
 export default function Home() {
   const [link, setLink] = useState("");
-  const [dlLink, setDlLink] = useState("");
   const [err, setError] = useState("");
   const [token, setToken] = useState("");
   const [disableInput, setdisableInput] = useState(false);
@@ -153,16 +152,11 @@ export default function Home() {
     setToken(encryptedData);
   }
 
-  async function getDlLink(){
-        axios.head(data?.dlink)
-  .then(response => {
-    const downloadLink = response.request.res.responseUrl;
-    setDlLink(downloadLink)
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-   getDlLink()
+  async function playerHandler(){
+    const response = await axios.post(("https://orange-farmer-rqnyh.pwskills.app:4000/"),{data.link})
+    const lk = response.data.downloadLink;
+    setDlLink(lk)
+  }
 
   return (
     <div className="pt-6 mx-12">
